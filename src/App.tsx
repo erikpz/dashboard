@@ -1,8 +1,8 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { PrivateRoute } from "./pages/components/PrivateRoute";
-import { DashboardHome } from "./pages/dashboard/DashboardHome";
-import { AuthLayout } from "./pages/login/AuthLayout";
+import { Dashboard } from "./pages/dashboard/Dashboard";
+import { Auth } from "./pages/login/AuthLayout";
 import { SignInPage } from "./pages/login/SignInPage";
 import { SignUpPage } from "./pages/login/SignUpPage";
 import { ThemeConfig } from "./theme/ThemeConfig";
@@ -13,10 +13,14 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<PrivateRoute />}>
-            <Route index element={<DashboardHome />} />
-            <Route path="home" element={<DashboardHome />} />
+            <Route index element={<Navigate to="dashboard" />} />
+            <Route path="dashboard" element={<Dashboard />}>
+              <Route path="home" element={<p>DASH HOME</p>} />
+              <Route path="details" element={<p>DASH DETAILS</p>} />
+            </Route>
           </Route>
-          <Route path="/auth" element={<AuthLayout />}>
+          <Route path="*" element={<p>Not Found</p>} />
+          <Route path="/auth" element={<Auth />}>
             <Route index element={<SignInPage />} />
             <Route path="sign-in" element={<SignInPage />} />
             <Route path="sign-up" element={<SignUpPage />} />
