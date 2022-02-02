@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  FC,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { createContext, FC, useEffect, useMemo, useState } from "react";
 import {
   createTheme,
   CssBaseline,
@@ -83,7 +77,7 @@ export const ThemeConfig: FC<IThemeConfig> = ({ children }) => {
     if (!localStorage.getItem("themeMode")) {
       localStorage.setItem("themeMode", "light");
     } else {
-      setmode(localStorage.getItem("themeMode") as PaletteMode);
+      setmode((localStorage.getItem("themeMode") as PaletteMode) ?? "light");
     }
   }, []);
 
