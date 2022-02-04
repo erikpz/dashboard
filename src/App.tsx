@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { ScrollToTop } from "./components/ScrollToTop";
 import { PrivateRoute } from "./pages/components/PrivateRoute";
 import { Dashboard } from "./pages/dashboard/Dashboard";
 import { Auth } from "./pages/login/Auth";
@@ -11,6 +12,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <ThemeConfig>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<PrivateRoute />}>
             <Route index element={<Navigate to="dashboard" />} />
