@@ -5,27 +5,12 @@ import {
   GlobalStyles,
   responsiveFontSizes,
   ThemeProvider,
-  PaletteOptions,
   PaletteMode,
-  alpha,
 } from "@mui/material";
 import { globalStyles } from "./globalStyles";
+import { lightPalette, darkPalette } from "./palette";
 
 const FONT_FAMILY = '"Lato", sans-serif';
-
-const lightPalette: PaletteOptions = {
-  common: { black: "#0a0908", white: "#F5F5F5" },
-  text: { primary: "#0a0908", secondary: "#1F1C19" },
-  background: { default: "#F5F5F5", paper: "#F5F5F5" },
-  divider: alpha("#001633", 0.3),
-};
-
-const darkPalette: PaletteOptions = {
-  common: { black: "#0a0908", white: "#F5F5F5" },
-  text: { primary: "#F5F5F5", secondary: "#D2D2D2" },
-  background: { default: "#0a0908", paper: "#0a0908" },
-  divider: alpha("#F5F5F5", 0.3),
-};
 
 const typography = {
   fontFamily: FONT_FAMILY,

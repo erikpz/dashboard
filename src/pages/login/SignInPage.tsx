@@ -1,6 +1,8 @@
+import { Box, useTheme } from "@mui/system";
 import React from "react";
 
 export const SignInPage = () => {
+  const theme = useTheme();
   const handleClick = async () => {
     const res = await fetch(
       "https://notes-api-gamma.vercel.app/api/auth/login",
@@ -13,9 +15,15 @@ export const SignInPage = () => {
     console.log(resjson);
   };
 
+  console.log(theme);
+
   return (
-    <div>
+    <Box
+      sx={(theme: any) => ({
+        backgroundImage: theme.palette.gradients.primary,
+      })}
+    >
       <button onClick={handleClick}>Fetch</button>
-    </div>
+    </Box>
   );
 };

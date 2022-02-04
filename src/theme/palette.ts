@@ -1,4 +1,42 @@
-import { alpha } from "@mui/material";
+import { alpha, PaletteOptions } from "@mui/material";
+import { PaletteOptionsExtended } from "@mui/material/styles/createPalette";
+
+const createGradient = (color1: string, color2: string) => {
+  return `linear-gradient(to bottom, ${color1}, ${color2})`;
+};
+
+declare module "@mui/material/styles/createPalette" {
+  interface PaletteExtended extends Palette {
+    gradients: {
+      primary: string;
+      success: string;
+      info: string;
+      warning: string;
+      error: string;
+    };
+
+    background: {
+      default: string;
+      paper: string;
+      neutral: string;
+    };
+  }
+  interface PaletteOptionsExtended extends PaletteOptions {
+    gradients: {
+      primary?: string;
+      success?: string;
+      info?: string;
+      warning?: string;
+      error?: string;
+    };
+
+    background: {
+      default?: string;
+      paper?: string;
+      neutral?: string;
+    };
+  }
+}
 
 const GREY = {
   0: "#FFFFFF",
@@ -68,4 +106,64 @@ const ERROR = {
   dark: "#B72136",
   darker: "#7A0C2E",
   contrastText: "#fff",
+};
+
+const GRADIENTS = {
+  primary: createGradient(PRIMARY.light, PRIMARY.main),
+  info: createGradient(INFO.light, INFO.main),
+  success: createGradient(SUCCESS.light, SUCCESS.main),
+  warning: createGradient(WARNING.light, WARNING.main),
+  error: createGradient(ERROR.light, ERROR.main),
+};
+
+export const lightPalette: PaletteOptionsExtended = {
+  mode: "light",
+  common: { black: "#000", white: "#fff" },
+  primary: { ...PRIMARY },
+  secondary: { ...SECONDARY },
+  info: { ...INFO },
+  success: { ...SUCCESS },
+  warning: { ...WARNING },
+  error: { ...ERROR },
+  grey: GREY,
+  gradients: { ...GRADIENTS },
+  divider: GREY[500_24],
+  text: { primary: GREY[800], secondary: GREY[600], disabled: GREY[500] },
+  background: { paper: "#fff", default: "#fff", neutral: GREY[200] },
+  action: {
+    active: GREY[600],
+    hover: GREY[500_8],
+    selected: GREY[500_16],
+    disabled: GREY[500_80],
+    disabledBackground: GREY[500_24],
+    focus: GREY[500_24],
+    hoverOpacity: 0.08,
+    disabledOpacity: 0.48,
+  },
+};
+
+export const darkPalette: PaletteOptionsExtended = {
+  mode: "dark",
+  common: { black: "#000", white: "#fff" },
+  primary: { ...PRIMARY },
+  secondary: { ...SECONDARY },
+  info: { ...INFO },
+  success: { ...SUCCESS },
+  warning: { ...WARNING },
+  error: { ...ERROR },
+  grey: GREY,
+  gradients: { ...GRADIENTS },
+  divider: GREY[500_24],
+  text: { primary: "#fff", secondary: GREY[500], disabled: GREY[600] },
+  background: { paper: GREY[800], default: GREY[900], neutral: GREY[500_16] },
+  action: {
+    active: GREY[500],
+    hover: GREY[500_8],
+    selected: GREY[500_16],
+    disabled: GREY[500_80],
+    disabledBackground: GREY[500_24],
+    focus: GREY[500_24],
+    hoverOpacity: 0.08,
+    disabledOpacity: 0.48,
+  },
 };

@@ -1,0 +1,3 @@
+interface API {
+  base: string;
+}
