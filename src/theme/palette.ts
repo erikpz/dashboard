@@ -116,9 +116,7 @@ const GRADIENTS = {
   error: createGradient(ERROR.light, ERROR.main),
 };
 
-export const lightPalette: PaletteOptionsExtended = {
-  mode: "light",
-  common: { black: "#000", white: "#fff" },
+export const paletteBase = {
   primary: { ...PRIMARY },
   secondary: { ...SECONDARY },
   info: { ...INFO },
@@ -128,6 +126,12 @@ export const lightPalette: PaletteOptionsExtended = {
   grey: GREY,
   gradients: { ...GRADIENTS },
   divider: GREY[500_24],
+};
+
+export const lightPalette: PaletteOptionsExtended = {
+  ...paletteBase,
+  mode: "light",
+  common: { black: "#000", white: "#fff" },
   text: { primary: GREY[800], secondary: GREY[600], disabled: GREY[500] },
   background: { paper: "#fff", default: "#fff", neutral: GREY[200] },
   action: {
@@ -143,17 +147,9 @@ export const lightPalette: PaletteOptionsExtended = {
 };
 
 export const darkPalette: PaletteOptionsExtended = {
+  ...paletteBase,
   mode: "dark",
   common: { black: "#000", white: "#fff" },
-  primary: { ...PRIMARY },
-  secondary: { ...SECONDARY },
-  info: { ...INFO },
-  success: { ...SUCCESS },
-  warning: { ...WARNING },
-  error: { ...ERROR },
-  grey: GREY,
-  gradients: { ...GRADIENTS },
-  divider: GREY[500_24],
   text: { primary: "#fff", secondary: GREY[500], disabled: GREY[600] },
   background: { paper: GREY[800], default: GREY[900], neutral: GREY[500_16] },
   action: {

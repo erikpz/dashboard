@@ -2,13 +2,21 @@ import React, { createContext, FC, useEffect, useMemo, useState } from "react";
 import {
   createTheme,
   CssBaseline,
-  GlobalStyles,
   ThemeProvider,
   PaletteMode,
+  StyledEngineProvider,
 } from "@mui/material";
-import { globalStyles } from "./globalStyles";
+import { GlobalStyles } from "./GlobalStyles";
 import { lightPalette, darkPalette } from "./palette";
 import { typography } from "./typography";
+import shape from "./shape";
+import shadows, { customShadows } from "./shadows";
+
+declare module "@mui/material/styles" {
+  interface ThemeOptions {
+    customShadows?: any;
+  }
+}
 
 interface IColorModeContext {
   toggleColorMode: () => void;
@@ -38,14 +46,17 @@ export const ThemeConfig: FC<IThemeConfig> = ({ children }) => {
         ...(mode === "light" ? lightPalette : darkPalette),
       },
       typography,
+      shape,
+      shadows,
+      customShadows,
       components: {
-        MuiCssBaseline: {
+        /*  MuiCssBaseline: {
           styleOverrides: `
               * {
-                transition: background-color 500ms;
+                transition: background-color 100ms;
               }
             `,
-        },
+        }, */
       },
     });
   }, [mode]);
@@ -63,12 +74,14 @@ export const ThemeConfig: FC<IThemeConfig> = ({ children }) => {
   }, [mode]);
 
   return (
-    <ColorModeContext.Provider value={{ toggleColorMode }}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles styles={(theme) => globalStyles(theme)} />
-        <CssBaseline />
-        {children}
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+    <StyledEngineProvider injectFirst>
+      <ColorModeContext.Provider value={{ toggleColorMode }}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles />
+          <CssBaseline />
+          {children}
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    </StyledEngineProvider>
   );
 };
