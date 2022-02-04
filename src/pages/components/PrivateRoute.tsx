@@ -5,7 +5,7 @@ export const PrivateRoute = (props: any) => {
   const logged = localStorage.getItem("logged");
 
   if (!logged) {
-    return <Navigate to="/auth/sign-in" />;
+    return <Navigate to="/auth" />;
   }
   return <Outlet />;
 };
