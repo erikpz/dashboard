@@ -3,18 +3,12 @@ import {
   createTheme,
   CssBaseline,
   GlobalStyles,
-  responsiveFontSizes,
   ThemeProvider,
   PaletteMode,
 } from "@mui/material";
 import { globalStyles } from "./globalStyles";
 import { lightPalette, darkPalette } from "./palette";
-
-const FONT_FAMILY = '"Lato", sans-serif';
-
-const typography = {
-  fontFamily: FONT_FAMILY,
-};
+import { typography } from "./typography";
 
 interface IColorModeContext {
   toggleColorMode: () => void;
@@ -38,24 +32,22 @@ export const ThemeConfig: FC<IThemeConfig> = ({ children }) => {
   );
 
   let theme = useMemo(() => {
-    return responsiveFontSizes(
-      createTheme({
-        palette: {
-          mode: mode ?? "light",
-          ...(mode === "light" ? lightPalette : darkPalette),
-        },
-        typography,
-        components: {
-          MuiCssBaseline: {
-            styleOverrides: `
+    return createTheme({
+      palette: {
+        mode: mode ?? "light",
+        ...(mode === "light" ? lightPalette : darkPalette),
+      },
+      typography,
+      components: {
+        MuiCssBaseline: {
+          styleOverrides: `
               * {
                 transition: background-color 500ms;
               }
             `,
-          },
         },
-      })
-    );
+      },
+    });
   }, [mode]);
 
   useEffect(() => {
