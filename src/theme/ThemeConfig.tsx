@@ -11,6 +11,7 @@ import { lightPalette, darkPalette } from "./palette";
 import { typography } from "./typography";
 import shape from "./shape";
 import shadows, { customShadows } from "./shadows";
+import { componentsOverride } from "./overrides";
 
 declare module "@mui/material/styles" {
   interface Theme {
@@ -68,8 +69,8 @@ export const ThemeConfig: FC<IThemeConfig> = ({ children }) => {
     []
   );
 
-  let theme = useMemo(() => {
-    return createTheme({
+  const themeOptions = useMemo(
+    () => ({
       palette: {
         ...(mode === "light" ? lightPalette : darkPalette),
       },
@@ -77,8 +78,12 @@ export const ThemeConfig: FC<IThemeConfig> = ({ children }) => {
       shape,
       shadows,
       customShadows,
-    });
-  }, [mode]);
+    }),
+    [mode]
+  );
+
+  const theme = createTheme(themeOptions);
+  theme.components = componentsOverride(theme);
 
   useEffect(() => {
     if (!localStorage.getItem("themeMode")) {

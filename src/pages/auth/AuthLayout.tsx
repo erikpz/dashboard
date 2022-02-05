@@ -1,6 +1,15 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-import { Card, Stack, Link, Container, Typography, Box } from "@mui/material";
+import {
+  Card,
+  Stack,
+  Link,
+  Container,
+  Typography,
+  Box,
+  TextField,
+  Button,
+} from "@mui/material";
 import { Outlet } from "react-router-dom";
 import { Hidden } from "../../components/Hidden";
 
@@ -26,7 +35,7 @@ const ImageContainer = styled(Box)(({ theme }) => ({
 }));
 
 const FormContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: "lightyellow",
+  /* backgroundColor: "lightyellow", */
   padding: "150px 0",
   width: "100%",
   display: "flex",
@@ -34,10 +43,13 @@ const FormContainer = styled(Box)(({ theme }) => ({
 }));
 
 const Form = styled(Box)(({ theme }) => ({
-  backgroundColor: "lightblue",
+  /*  backgroundColor: "lightblue", */
   width: "100%",
   maxWidth: 500,
   padding: 20,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
 }));
 
 export const AuthLayout = () => {
@@ -55,7 +67,17 @@ export const AuthLayout = () => {
         </ImageContainer>
       </Hidden>
       <FormContainer>
-        <Form>Form</Form>
+        <Form>
+          <Typography variant="h5">Iniciar sesión</Typography>
+          <Typography variant="body1" color="GrayText">
+            Ingresa tus credenciales
+          </Typography>
+          <TextField placeholder="Correo electrónico" sx={{ mt: 3 }} />
+          <TextField placeholder="Contraseña" sx={{ mt: 3 }} />
+          <Button variant="contained" sx={{ height: 63, my: 3 }}>
+            Iniciar Sesión
+          </Button>
+        </Form>
       </FormContainer>
     </LayoutStyle>
   );
