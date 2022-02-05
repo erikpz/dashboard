@@ -1,42 +1,8 @@
-import { alpha, PaletteOptions } from "@mui/material";
-import { PaletteOptionsExtended } from "@mui/material/styles/createPalette";
+import { alpha, PaletteMode } from "@mui/material";
 
 const createGradient = (color1: string, color2: string) => {
   return `linear-gradient(to bottom, ${color1}, ${color2})`;
 };
-
-declare module "@mui/material/styles/createPalette" {
-  interface PaletteExtended extends Palette {
-    gradients: {
-      primary: string;
-      success: string;
-      info: string;
-      warning: string;
-      error: string;
-    };
-
-    background: {
-      default: string;
-      paper: string;
-      neutral: string;
-    };
-  }
-  interface PaletteOptionsExtended extends PaletteOptions {
-    gradients: {
-      primary?: string;
-      success?: string;
-      info?: string;
-      warning?: string;
-      error?: string;
-    };
-
-    background: {
-      default?: string;
-      paper?: string;
-      neutral?: string;
-    };
-  }
-}
 
 const GREY = {
   0: "#FFFFFF",
@@ -128,9 +94,9 @@ export const paletteBase = {
   divider: GREY[500_24],
 };
 
-export const lightPalette: PaletteOptionsExtended = {
+export const lightPalette = {
   ...paletteBase,
-  mode: "light",
+  mode: "light" as PaletteMode,
   common: { black: "#000", white: "#fff" },
   text: { primary: GREY[800], secondary: GREY[600], disabled: GREY[500] },
   background: { paper: "#fff", default: "#fff", neutral: GREY[200] },
@@ -146,9 +112,9 @@ export const lightPalette: PaletteOptionsExtended = {
   },
 };
 
-export const darkPalette: PaletteOptionsExtended = {
+export const darkPalette = {
   ...paletteBase,
-  mode: "dark",
+  mode: "dark" as PaletteMode,
   common: { black: "#000", white: "#fff" },
   text: { primary: "#fff", secondary: GREY[500], disabled: GREY[600] },
   background: { paper: GREY[800], default: GREY[900], neutral: GREY[500_16] },

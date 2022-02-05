@@ -13,8 +13,37 @@ import shape from "./shape";
 import shadows, { customShadows } from "./shadows";
 
 declare module "@mui/material/styles" {
+  interface Theme {
+    customShadows: any;
+    shape: any;
+  }
   interface ThemeOptions {
     customShadows?: any;
+    shape?: any;
+  }
+}
+
+declare module "@mui/material/styles/createPalette" {
+  interface TypeBackground {
+    neutral: string;
+  }
+  interface Palette {
+    gradients: {
+      primary: string;
+      success: string;
+      info: string;
+      warning: string;
+      error: string;
+    };
+  }
+  interface PaletteOptions {
+    gradients?: {
+      primary?: string;
+      success?: string;
+      info?: string;
+      warning?: string;
+      error?: string;
+    };
   }
 }
 
@@ -42,22 +71,12 @@ export const ThemeConfig: FC<IThemeConfig> = ({ children }) => {
   let theme = useMemo(() => {
     return createTheme({
       palette: {
-        mode: mode ?? "light",
         ...(mode === "light" ? lightPalette : darkPalette),
       },
       typography,
       shape,
       shadows,
       customShadows,
-      components: {
-        /*  MuiCssBaseline: {
-          styleOverrides: `
-              * {
-                transition: background-color 100ms;
-              }
-            `,
-        }, */
-      },
     });
   }, [mode]);
 

@@ -66,8 +66,6 @@ export const GlobalStyles = () => {
           display: "block",
           maxWidth: "100%",
         },
-
-        // Lazy Load Img
         ".blur-up": {
           WebkitFilter: "blur(5px)",
           filter: "blur(5px)",
