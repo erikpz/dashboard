@@ -21,7 +21,7 @@ const App = () => {
               <Route path="details" element={<p>DASH DETAILS</p>} />
             </Route>
           </Route>
-          <Route path="/auth" element={<AuthLayout />}>
+          <Route path="auth" element={<AuthLayout />}>
             <Route index element={<Navigate to="sign-in" />} />
             <Route path="sign-in" element={<SignInPage />} />
             <Route path="sign-up" element={<SignUpPage />} />
