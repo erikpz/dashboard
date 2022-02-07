@@ -8,14 +8,10 @@ const LayoutStyle = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "100%",
   display: "flex",
-  /* [theme.breakpoints.up('md')]: {
-    display: 'flex'
-  } */
 }));
 
 const ImageContainer = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.background.neutral,
-  /* backgroundImage:theme.palette.gradients.primary, */
   width: "100%",
   maxWidth: 464,
   margin: "16px 0 16px 16px",
@@ -30,7 +26,7 @@ export const AuthLayout = () => {
     <LayoutStyle>
       <Hidden width="mdDown">
         <ImageContainer>
-          <Typography variant="h4" sx={{ mt: 10, mb: 4, px: 6 }}>
+          <Typography variant="h3" sx={{ mt: 10, mb: 4, px: 6 }}>
             Hola, Bienvenido
           </Typography>
           <img

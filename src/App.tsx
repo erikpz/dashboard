@@ -7,27 +7,31 @@ import { AuthLayout } from "./pages/auth/AuthLayout";
 import { SignInPage } from "./pages/auth/SignInPage";
 import { SignUpPage } from "./pages/auth/SignUpPage";
 import { ThemeConfig } from "./theme/ThemeConfig";
+import { AppContainer } from "./components/AppContainer";
 
 const App = () => {
   return (
     <BrowserRouter>
       <ThemeConfig>
         <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<PrivateRoute />}>
-            <Route index element={<Navigate to="dashboard" />} />
-            <Route path="dashboard" element={<DashboardLayout />}>
-              <Route path="home" element={<p>DASH HOME</p>} />
-              <Route path="details" element={<p>DASH DETAILS</p>} />
+        <AppContainer>
+          <Routes>
+            <Route path="/" element={<PrivateRoute />}>
+              <Route index element={<Navigate to="dashboard" />} />
+              <Route path="dashboard" element={<DashboardLayout />}>
+                <Route path="home" element={<p>DASH HOME</p>} />
+                <Route path="details" element={<p>DASH DETAILS</p>} />
+              </Route>
             </Route>
-          </Route>
-          <Route path="auth" element={<AuthLayout />}>
-            <Route index element={<Navigate to="sign-in" />} />
-            <Route path="sign-in" element={<SignInPage />} />
-            <Route path="sign-up" element={<SignUpPage />} />
-          </Route>
-          <Route path="*" element={<p>Not Found</p>} />
-        </Routes>
+            <Route path="auth" element={<AuthLayout />}>
+              <Route index element={<Navigate to="sign-in" />} />
+              <Route path="sign-in" element={<SignInPage />} />
+              <Route path="sign-up" element={<SignUpPage />} />
+              <Route path="forgot-password" element={<p>FORGOT PASS</p>} />
+            </Route>
+            <Route path="*" element={<p>Not Found</p>} />
+          </Routes>
+        </AppContainer>
       </ThemeConfig>
     </BrowserRouter>
   );

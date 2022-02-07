@@ -1,7 +1,7 @@
 import { TypographyOptions } from "@mui/material/styles/createTypography";
 
 const pxToRem = (value: number) => {
-  return `${value / 12}rem`;
+  return `${value / 14}rem`;
 };
 
 const responsiveFontSizes = ({ sm, md, lg }: any) => {
