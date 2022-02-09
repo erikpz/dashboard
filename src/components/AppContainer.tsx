@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, IconButton, styled } from "@mui/material";
+import { Box, Button, styled } from "@mui/material";
 import { DisplaySettings } from "@mui/icons-material";
 import { SettingsDrawer } from "./SettingsDrawer";
 
