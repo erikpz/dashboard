@@ -26,12 +26,13 @@ export const AuthLayout = () => {
     <LayoutStyle>
       <Hidden width="mdDown">
         <ImageContainer>
-          <Typography variant="h3" sx={{ mt: 10, mb: 4, px: 6 }}>
+          <Typography align="center" variant="h3" sx={{ mt: 10, mb: 4, px: 6 }}>
             Hola, Bienvenido
           </Typography>
           <img
             alt="bienvenido"
             src="/static/illustrations/illustration_login.png"
+            style={{ maxWidth: 400, margin: "0 auto" }}
           />
         </ImageContainer>
       </Hidden>

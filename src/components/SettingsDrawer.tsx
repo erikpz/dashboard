@@ -48,7 +48,6 @@ const DrawerBody = styled(Box)(({ theme }) => ({
   /*  backgroundColor: "lightblue", */
   width: "100%",
   padding: "24px",
-  height: "100%",
 }));
 
 const DrawerButton = styled(Button)(({ theme }: any) => ({
