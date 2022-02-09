@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Box, Drawer, IconButton, styled } from "@mui/material";
+import { Box, IconButton, styled } from "@mui/material";
 import { DisplaySettings } from "@mui/icons-material";
+import { SettingsDrawer } from "./SettingsDrawer";
 
 const RootStyle = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -12,7 +13,7 @@ const ButtonStyle = styled(IconButton)(({ theme }) => ({
   position: "fixed",
   right: 0,
   top: "50%",
-  boxShadow: theme.shadows[12],
+  boxShadow: theme.shadows[3],
 }));
 
 export const AppContainer = ({ children }: any) => {
@@ -24,9 +25,7 @@ export const AppContainer = ({ children }: any) => {
       <ButtonStyle onClick={handleOpen}>
         <DisplaySettings />
       </ButtonStyle>
-      <Drawer anchor="right" open={open} onClose={handleClose}>
-        Drawer
-      </Drawer>
+      <SettingsDrawer open={open} onClose={handleClose} />
       {children}
     </RootStyle>
   );
