@@ -5,7 +5,6 @@ import {
   Drawer,
   IconButton,
   styled,
-  Theme,
   Typography,
 } from "@mui/material";
 import {
@@ -66,6 +65,7 @@ export const SettingsDrawer: FC<SettingsDrawerProps> = (props) => {
   const { open, onClose } = props;
   const { setColorMode } = useContext(ColorModeContext);
   const theme: any = useTheme();
+  console.log(theme);
   return (
     <DrawerStyles anchor="right" open={open} onClose={onClose} elevation={0}>
       <DrawerHeader>

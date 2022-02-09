@@ -15,7 +15,7 @@ const GREY = {
   700: "#454F5B",
   800: "#212B36",
   900: "#161C24",
-  200_80: alpha("#F4F6F8", 0.8),
+  400_50: alpha("#C4CDD5", 0.5),
   500_8: alpha("#919EAB", 0.08),
   500_12: alpha("#919EAB", 0.12),
   500_16: alpha("#919EAB", 0.16),
@@ -101,7 +101,7 @@ export const lightPalette = {
   mode: "light" as PaletteMode,
   common: { black: "#000", white: "#fff" },
   text: { primary: GREY[800], secondary: GREY[600], disabled: GREY[500] },
-  background: { paper: "#fff", default: "#fff", neutral: GREY[200_80] },
+  background: { paper: "#fff", default: "#fff", neutral: GREY[400_50] },
   action: {
     active: GREY[600],
     hover: GREY[500_8],
