@@ -50,6 +50,7 @@ declare module "@mui/material/styles/createPalette" {
 
 interface IColorModeContext {
   toggleColorMode: () => void;
+  setColorMode: (mode: PaletteMode) => void;
 }
 interface IThemeConfig {
   children: React.ReactNode;
@@ -57,6 +58,7 @@ interface IThemeConfig {
 
 export const ColorModeContext = createContext<IColorModeContext>({
   toggleColorMode: () => {},
+  setColorMode: () => {},
 });
 
 export const ThemeConfig: FC<IThemeConfig> = ({ children }) => {
@@ -65,6 +67,13 @@ export const ThemeConfig: FC<IThemeConfig> = ({ children }) => {
   const toggleColorMode = useMemo(
     () => () => {
       setmode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+    },
+    []
+  );
+
+  const setColorMode = useMemo(
+    () => (mode: PaletteMode) => {
+      setmode(mode);
     },
     []
   );
@@ -99,7 +108,7 @@ export const ThemeConfig: FC<IThemeConfig> = ({ children }) => {
 
   return (
     <StyledEngineProvider injectFirst>
-      <ColorModeContext.Provider value={{ toggleColorMode }}>
+      <ColorModeContext.Provider value={{ toggleColorMode, setColorMode }}>
         <ThemeProvider theme={theme}>
           <GlobalStyles />
           <CssBaseline />

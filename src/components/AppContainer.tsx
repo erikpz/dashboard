@@ -12,8 +12,8 @@ const RootStyle = styled(Box)(({ theme }) => ({
 const ButtonStyle = styled(IconButton)(({ theme }) => ({
   position: "fixed",
   right: 0,
-  top: "50%",
-  boxShadow: theme.shadows[3],
+  top: "20%",
+  backgroundColor: theme.palette.background.default,
 }));
 
 export const AppContainer = ({ children }: any) => {

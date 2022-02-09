@@ -34,7 +34,7 @@ export const SignInPage = () => {
     <FormContainer>
       <Form>
         <Typography variant="h4">Iniciar sesión</Typography>
-        <Typography variant="body1" color="GrayText" sx={{ my: 1 }}>
+        <Typography variant="body1" color="text.secondary" sx={{ my: 1 }}>
           Ingresa tus credenciales
         </Typography>
         <TextField label="Correo electrónico" sx={{ mt: 3 }} />

@@ -15,6 +15,7 @@ const GREY = {
   700: "#454F5B",
   800: "#212B36",
   900: "#161C24",
+  200_80: alpha("#F4F6F8", 0.8),
   500_8: alpha("#919EAB", 0.08),
   500_12: alpha("#919EAB", 0.12),
   500_16: alpha("#919EAB", 0.16),
@@ -23,6 +24,7 @@ const GREY = {
   500_48: alpha("#919EAB", 0.48),
   500_56: alpha("#919EAB", 0.56),
   500_80: alpha("#919EAB", 0.8),
+  800_80: alpha("#212B36", 0.8),
 };
 
 const PRIMARY = {
@@ -99,7 +101,7 @@ export const lightPalette = {
   mode: "light" as PaletteMode,
   common: { black: "#000", white: "#fff" },
   text: { primary: GREY[800], secondary: GREY[600], disabled: GREY[500] },
-  background: { paper: "#fff", default: "#fff", neutral: GREY[200] },
+  background: { paper: "#fff", default: "#fff", neutral: GREY[200_80] },
   action: {
     active: GREY[600],
     hover: GREY[500_8],
@@ -117,7 +119,7 @@ export const darkPalette = {
   mode: "dark" as PaletteMode,
   common: { black: "#000", white: "#fff" },
   text: { primary: "#fff", secondary: GREY[500], disabled: GREY[600] },
-  background: { paper: GREY[800], default: GREY[900], neutral: GREY[500_16] },
+  background: { paper: GREY[800], default: GREY[900], neutral: GREY[800_80] },
   action: {
     active: GREY[500],
     hover: GREY[500_8],
