@@ -7,7 +7,7 @@ import { Hidden } from "../../components/Hidden";
 const LayoutStyle = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "100%",
-  minHeight:'100%',
+  minHeight: "100%",
   display: "flex",
   position: "relative",
 }));
@@ -46,24 +46,30 @@ const ImageContainer = styled(Box)(({ theme }) => ({
 export const AuthLayout = () => {
   const location = useLocation();
   console.log(location);
-  const getLink = () => {
+  const getDataSection = () => {
     if (location.pathname.includes("sign-in")) {
       return {
+        title: "Hola, bienvenido",
         text: "¿No tienes una cuenta? ",
         textLink: "Regístrate",
         link: "/auth/sign-up",
+        imageSrc: "/static/illustrations/illustration_login.png",
       };
     } else if (location.pathname.includes("sign-up")) {
       return {
+        title: "Únete a nosotros",
         text: "¿Ya tienes una cuenta? ",
         textLink: "Inicia sesión",
         link: "/auth/sign-in",
+        imageSrc: "/static/illustrations/illustration_register.png",
       };
     } else {
       return {
+        title: "",
         text: "",
         textLink: "",
         link: "/",
+        imageSrc: "",
       };
     }
   };
@@ -79,16 +85,16 @@ export const AuthLayout = () => {
             />
             <Hidden width="smDown">
               <Typography variant="body2">
-                {getLink().text}
+                {getDataSection().text}
                 <LinkMui
                   component={Link}
-                  to={getLink().link}
+                  to={getDataSection().link}
                   variant="body2"
                   align="right"
                   sx={{ color: "primary.main" }}
                   underline="none"
                 >
-                  {getLink().textLink}
+                  {getDataSection().textLink}
                 </LinkMui>
               </Typography>
             </Hidden>
@@ -96,11 +102,11 @@ export const AuthLayout = () => {
           <Hidden width="mdDown">
             <ImageContainer>
               <Typography variant="h3" sx={{ mt: 10, mb: 8, px: 6 }}>
-                Hola, Bienvenido
+                {getDataSection().title}
               </Typography>
               <img
                 alt="bienvenido"
-                src="/static/illustrations/illustration_login.png"
+                src={getDataSection().imageSrc}
                 style={{ maxWidth: 380, margin: "0 auto" }}
               />
             </ImageContainer>
