@@ -85,7 +85,6 @@ export const SettingsDrawer: FC<SettingsDrawerProps> = (props) => {
   const { setThemeMode, color, setColorMode, resetTheme } =
     useContext(ThemeModeContext);
   const theme: any = useTheme();
-  console.log(color);
   return (
     <DrawerStyles anchor="right" open={open} onClose={onClose} elevation={0}>
       <DrawerHeader>

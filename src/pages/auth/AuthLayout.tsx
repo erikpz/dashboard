@@ -26,7 +26,7 @@ export const AuthLayout = () => {
     <LayoutStyle>
       <Hidden width="mdDown">
         <ImageContainer>
-          <Typography align="center" variant="h3" sx={{ mt: 10, mb: 4, px: 6 }}>
+          <Typography align="center" variant="h3" sx={{ mt: 10, mb: 10, px: 6 }}>
             Hola, Bienvenido
           </Typography>
           <img

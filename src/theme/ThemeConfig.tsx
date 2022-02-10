@@ -129,11 +129,19 @@ export const ThemeConfig: FC<IThemeConfig> = ({ children }) => {
     } else {
       setmode((localStorage.getItem("themeMode") as PaletteMode) ?? "light");
     }
+    if (!localStorage.getItem("colorTheme")) {
+      localStorage.setItem("colorTheme", "lightblue");
+    } else {
+      setcolor(
+        (localStorage.getItem("colorTheme") as TypeColorMode) ?? "lightblue"
+      );
+    }
   }, []);
 
   useEffect(() => {
     localStorage.setItem("themeMode", mode);
-  }, [mode]);
+    localStorage.setItem("colorTheme", color);
+  }, [mode, color]);
 
   return (
     <StyledEngineProvider injectFirst>
