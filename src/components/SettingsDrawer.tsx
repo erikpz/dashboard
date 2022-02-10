@@ -51,7 +51,8 @@ const DrawerBody = styled(Box)(({ theme }) => ({
   padding: "24px",
 }));
 
-const DrawerButton = styled(Button)(({ theme }: any) => ({
+const DrawerButton = styled(Button)(({ theme, x }: any) => ({
+  backgroundColor: x,
   width: 95,
   height: 70,
   border: `1px solid ${theme.palette.grey[500_24]}`,
@@ -102,14 +103,30 @@ export const SettingsDrawer: FC<SettingsDrawerProps> = (props) => {
       <DrawerBody>
         <Typography variant="body2">Modo</Typography>
         <Box sx={{ display: "flex", justifyContent: "space-between", my: 2 }}>
-          <DrawerButton onClick={() => setThemeMode("dark")}>
+          <DrawerButton
+            onClick={() => setThemeMode("dark")}
+            sx={{
+              border:
+                theme.palette.mode === "dark"
+                  ? `2px solid ${theme.palette.primary.main}`
+                  : undefined,
+            }}
+          >
             <DarkModeTwoTone
               sx={{ width: "28px", height: "28px" }}
               fontSize="medium"
               color={theme.palette.mode === "dark" ? "primary" : "disabled"}
             />
           </DrawerButton>
-          <DrawerButton onClick={() => setThemeMode("light")}>
+          <DrawerButton
+            onClick={() => setThemeMode("light")}
+            sx={{
+              border:
+                theme.palette.mode === "light"
+                  ? `2px solid ${theme.palette.primary.main}`
+                  : undefined,
+            }}
+          >
             <LightModeTwoTone
               sx={{ width: "28px", height: "28px" }}
               color={theme.palette.mode === "light" ? "primary" : "disabled"}

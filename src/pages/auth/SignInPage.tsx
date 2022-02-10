@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { Hidden } from "../../components/Hidden";
 
 const FormContainer = styled(Box)(({ theme }) => ({
   padding: "150px 0",
@@ -63,6 +64,21 @@ export const SignInPage = () => {
         <Button variant="contained" sx={{ height: 60, my: 3 }}>
           Iniciar Sesión
         </Button>
+        <Hidden width="smUp">
+          <Typography variant="body2" align="center">
+            ¿No tienes una cuenta?{" "}
+            <LinkMui
+              component={Link}
+              to="/auth/sign-up"
+              variant="body2"
+              align="right"
+              sx={{ color: "primary.main" }}
+              underline="none"
+            >
+              Regístrate.
+            </LinkMui>
+          </Typography>
+        </Hidden>
       </Form>
     </FormContainer>
   );

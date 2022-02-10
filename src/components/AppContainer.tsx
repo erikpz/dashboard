@@ -18,6 +18,7 @@ const ButtonStyle = styled(Button)(({ theme }) => ({
   borderRadius: "50%",
   right: 0,
   top: "20%",
+  zIndex: 1000,
   backgroundColor: theme.palette.background.default,
   color: theme.palette.text.disabled,
   "& svg": {
