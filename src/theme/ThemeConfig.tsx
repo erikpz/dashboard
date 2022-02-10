@@ -7,10 +7,10 @@ import {
   StyledEngineProvider,
 } from "@mui/material";
 import { GlobalStyles } from "./GlobalStyles";
-import { lightPalette, darkPalette } from "./palette";
+import { createPalette } from "./palette";
 import { typography } from "./typography";
 import shape from "./shape";
-import shadows, { customShadows } from "./shadows";
+import { createCustomShadows, createShadows } from "./shadows";
 import { componentsOverride } from "./overrides";
 
 declare module "@mui/material/styles" {
@@ -48,50 +48,79 @@ declare module "@mui/material/styles/createPalette" {
   }
 }
 
-interface IColorModeContext {
-  toggleColorMode: () => void;
-  setColorMode: (mode: PaletteMode) => void;
+export type TypeColorMode =
+  | "green"
+  | "purple"
+  | "lightblue"
+  | "darkblue"
+  | "orange"
+  | "red";
+
+interface IThemeModeContext {
+  color: TypeColorMode;
+  toggleThemeMode: () => void;
+  setThemeMode: (mode: PaletteMode) => void;
+  setColorMode: (color: TypeColorMode) => void;
+  resetTheme: () => void;
 }
 interface IThemeConfig {
   children: React.ReactNode;
 }
 
-export const ColorModeContext = createContext<IColorModeContext>({
-  toggleColorMode: () => {},
+export const ThemeModeContext = createContext<IThemeModeContext>({
+  color: "lightblue",
+  toggleThemeMode: () => {},
+  setThemeMode: () => {},
   setColorMode: () => {},
+  resetTheme: () => {},
 });
 
 export const ThemeConfig: FC<IThemeConfig> = ({ children }) => {
   const [mode, setmode] = useState<PaletteMode>("light");
+  const [color, setcolor] = useState<TypeColorMode>("lightblue");
 
-  const toggleColorMode = useMemo(
+  const toggleThemeMode = useMemo(
     () => () => {
       setmode((prevMode) => (prevMode === "light" ? "dark" : "light"));
     },
     []
   );
 
-  const setColorMode = useMemo(
+  const setThemeMode = useMemo(
     () => (mode: PaletteMode) => {
       setmode(mode);
     },
     []
   );
 
-  const themeOptions = useMemo(
-    () => ({
-      palette: {
-        ...(mode === "light" ? lightPalette : darkPalette),
-      },
-      typography,
-      shape,
-      shadows,
-      customShadows,
-    }),
-    [mode]
+  const setColorMode = useMemo(
+    () => (color: TypeColorMode) => {
+      setcolor(color);
+    },
+    []
   );
 
-  const theme = createTheme(themeOptions);
+  const resetTheme = useMemo(
+    () => () => {
+      setcolor("lightblue");
+      setmode("light");
+    },
+    []
+  );
+
+  const themeOptions = useMemo(
+    () => ({
+      palette: createPalette(color, mode),
+      typography,
+      shape,
+      customShadows: {},
+    }),
+    [mode, color]
+  );
+
+  const theme: any = createTheme(themeOptions);
+  theme.shadows = createShadows(theme);
+  theme.customShadows = createCustomShadows(theme);
   theme.components = componentsOverride(theme);
 
   useEffect(() => {
@@ -108,13 +137,21 @@ export const ThemeConfig: FC<IThemeConfig> = ({ children }) => {
 
   return (
     <StyledEngineProvider injectFirst>
-      <ColorModeContext.Provider value={{ toggleColorMode, setColorMode }}>
+      <ThemeModeContext.Provider
+        value={{
+          toggleThemeMode,
+          setThemeMode,
+          setColorMode,
+          color,
+          resetTheme,
+        }}
+      >
         <ThemeProvider theme={theme}>
           <GlobalStyles />
           <CssBaseline />
           {children}
         </ThemeProvider>
-      </ColorModeContext.Provider>
+      </ThemeModeContext.Provider>
     </StyledEngineProvider>
   );
 };

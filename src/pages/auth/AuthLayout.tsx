@@ -32,7 +32,7 @@ export const AuthLayout = () => {
           <img
             alt="bienvenido"
             src="/static/illustrations/illustration_login.png"
-            style={{ maxWidth: 400, margin: "0 auto" }}
+            style={{ maxWidth: 380, margin: "0 auto" }}
           />
         </ImageContainer>
       </Hidden>

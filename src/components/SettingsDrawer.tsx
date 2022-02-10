@@ -12,8 +12,9 @@ import {
   Close,
   DarkModeTwoTone,
   LightModeTwoTone,
+  FiberManualRecordTwoTone,
 } from "@mui/icons-material";
-import { ColorModeContext } from "../theme/ThemeConfig";
+import { ThemeModeContext } from "../theme/ThemeConfig";
 import { useTheme } from "@emotion/react";
 
 interface SettingsDrawerProps {
@@ -60,16 +61,36 @@ const DrawerButton = styled(Button)(({ theme }: any) => ({
   alignItems: "center",
 }));
 
+const DrawerMiniButton = styled(Button)(({ theme }: any) => ({
+  width: 60,
+  height: 46,
+  border: `1px solid ${theme.palette.grey[500_24]}`,
+  borderRadius: "12px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+}));
+
+const colorsTheme = [
+  { label: "green", hex: "#00AB55" },
+  { label: "lightblue", hex: "#1CCAFF" },
+  { label: "purple", hex: "#7635dc" },
+  { label: "red", hex: "#FF3030" },
+  { label: "orange", hex: "#fda92d" },
+  { label: "darkblue", hex: "#2065D1" },
+];
+
 export const SettingsDrawer: FC<SettingsDrawerProps> = (props) => {
   const { open, onClose } = props;
-  const { setColorMode } = useContext(ColorModeContext);
+  const { setThemeMode, color, setColorMode, resetTheme } =
+    useContext(ThemeModeContext);
   const theme: any = useTheme();
-  console.log(theme);
+  console.log(color);
   return (
     <DrawerStyles anchor="right" open={open} onClose={onClose} elevation={0}>
       <DrawerHeader>
         <Typography variant="body2">Ajustes</Typography>
-        <IconButton sx={{ ml: "auto" }}>
+        <IconButton sx={{ ml: "auto" }} onClick={resetTheme}>
           <SettingsBackupRestore
             sx={{ color: "text.primary" }}
             fontSize="small"
@@ -81,20 +102,39 @@ export const SettingsDrawer: FC<SettingsDrawerProps> = (props) => {
       </DrawerHeader>
       <DrawerBody>
         <Typography variant="body2">Modo</Typography>
-        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
-          <DrawerButton onClick={() => setColorMode("dark")}>
+        <Box sx={{ display: "flex", justifyContent: "space-between", my: 2 }}>
+          <DrawerButton onClick={() => setThemeMode("dark")}>
             <DarkModeTwoTone
               sx={{ width: "28px", height: "28px" }}
               fontSize="medium"
               color={theme.palette.mode === "dark" ? "primary" : "disabled"}
             />
           </DrawerButton>
-          <DrawerButton onClick={() => setColorMode("light")}>
+          <DrawerButton onClick={() => setThemeMode("light")}>
             <LightModeTwoTone
               sx={{ width: "28px", height: "28px" }}
               color={theme.palette.mode === "light" ? "primary" : "disabled"}
             />
           </DrawerButton>
+        </Box>
+        <Typography variant="body2" sx={{ mb: 2 }}>
+          Color del tema
+        </Typography>
+        <Box sx={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+          {colorsTheme.map((col: any) => (
+            <DrawerMiniButton
+              onClick={() => setColorMode(col.label)}
+              key={col.label}
+              sx={{
+                border:
+                  col.label === color
+                    ? `2px solid ${theme.palette.primary.main}`
+                    : undefined,
+              }}
+            >
+              <FiberManualRecordTwoTone sx={{ color: col.hex }} />
+            </DrawerMiniButton>
+          ))}
         </Box>
       </DrawerBody>
     </DrawerStyles>

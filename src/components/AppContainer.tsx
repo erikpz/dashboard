@@ -9,6 +9,7 @@ const RootStyle = styled(Box)(({ theme }) => ({
   minHeight: "100%",
   position: "relative",
 }));
+
 const ButtonStyle = styled(Button)(({ theme }) => ({
   position: "fixed",
   width: 50,

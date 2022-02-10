@@ -1,10 +1,11 @@
 import { alpha } from "@mui/material/styles";
 import { Shadows } from "@mui/material/styles/shadows";
-import { paletteBase as palette } from "./palette";
 
-const MODE = palette.grey[500];
-
-const createShadow = (color: string): Shadows => {
+export const createShadows = (theme: any): Shadows => {
+  const color =
+    theme.palette.mode === "light"
+      ? theme.palette.grey[500]
+      : theme.palette.grey[800];
   const transparent1 = alpha(color, 0.2);
   const transparent2 = alpha(color, 0.14);
   const transparent3 = alpha(color, 0.12);
@@ -37,8 +38,14 @@ const createShadow = (color: string): Shadows => {
   ];
 };
 
-const createCustomShadow = (color: string) => {
-  const transparent = alpha(color, 0.24);
+export const createCustomShadows = (theme: any) => {
+  const transparent = alpha(
+    theme.palette.mode === "light"
+      ? theme.palette.grey[500]
+      : theme.palette.grey[800],
+    0.24
+  );
+  const palette = theme.palette;
 
   return {
     z1: `0 1px 2px 0 ${transparent}`,
@@ -53,11 +60,5 @@ const createCustomShadow = (color: string) => {
     success: `0 8px 16px 0 ${alpha(palette.success.main, 0.24)}`,
     warning: `0 8px 16px 0 ${alpha(palette.warning.main, 0.24)}`,
     error: `0 8px 16px 0 ${alpha(palette.error.main, 0.24)}`,
-  };
+  } as any;
 };
-
-export const customShadows = createCustomShadow(MODE);
-
-const shadows = createShadow(MODE);
-
-export default shadows;

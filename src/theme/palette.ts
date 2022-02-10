@@ -1,7 +1,62 @@
 import { alpha, PaletteMode } from "@mui/material";
+import { TypeColorMode } from "./ThemeConfig";
 
 const createGradient = (color1: string, color2: string) => {
   return `linear-gradient(to bottom, ${color1}, ${color2})`;
+};
+
+const PRIMARY_GREEN = {
+  lighter: "#C8FACD",
+  light: "#5BE584",
+  main: "#00AB55",
+  dark: "#007B55",
+  darker: "#005249",
+  contrastText: "#fff",
+};
+
+const PRIMARY_LIGHTBLUE = {
+  lighter: "#D1FFFC",
+  light: "#76F2FF",
+  main: "#1CCAFF",
+  dark: "#0E77B7",
+  darker: "#053D7A",
+  contrastText: "#fff",
+};
+
+const PRIMARY_DARKBLUE = {
+  lighter: "#D1E9FC",
+  light: "#76B0F1",
+  main: "#1CCAFF",
+  dark: "#2065D1",
+  darker: "#061B64",
+  contrastText: "#fff",
+};
+
+const PRIMARY_PURPLE = {
+  lighter: "#EBD6FD",
+  light: "#B985F4",
+  main: "#7635dc",
+  dark: "#431A9E",
+  darker: "#200A69",
+  contrastText: "#fff",
+};
+
+const PRIMARY_RED = {
+  lighter: "#FFE3D5",
+  light: "#FFC1AC",
+  main: "#FF3030",
+  dark: "#B71833",
+  darker: "#7A0930",
+  contrastText: "#fff",
+};
+
+const PRIMARY_ORANGE = {
+  lighter: "#FEF4D4",
+  light: "#FED680",
+  main: "#fda92d",
+  dark: "#B66816",
+  darker: "#793908",
+  contrastText: "#fff",
 };
 
 const GREY = {
@@ -27,14 +82,6 @@ const GREY = {
   800_80: alpha("#212B36", 0.8),
 };
 
-const PRIMARY = {
-  lighter: "#C8FACD",
-  light: "#5BE584",
-  main: "#00AB55",
-  dark: "#007B55",
-  darker: "#005249",
-  contrastText: "#fff",
-};
 const SECONDARY = {
   lighter: "#D6E4FF",
   light: "#84A9FF",
@@ -43,6 +90,7 @@ const SECONDARY = {
   darker: "#091A7A",
   contrastText: "#fff",
 };
+
 const INFO = {
   lighter: "#D0F2FF",
   light: "#74CAFF",
@@ -51,6 +99,7 @@ const INFO = {
   darker: "#04297A",
   contrastText: "#fff",
 };
+
 const SUCCESS = {
   lighter: "#E9FCD4",
   light: "#AAF27F",
@@ -59,6 +108,7 @@ const SUCCESS = {
   darker: "#08660D",
   contrastText: GREY[800],
 };
+
 const WARNING = {
   lighter: "#FFF7CD",
   light: "#FFE16A",
@@ -67,6 +117,7 @@ const WARNING = {
   darker: "#7A4F01",
   contrastText: GREY[800],
 };
+
 const ERROR = {
   lighter: "#FFE7D9",
   light: "#FFA48D",
@@ -77,7 +128,6 @@ const ERROR = {
 };
 
 const GRADIENTS = {
-  primary: createGradient(PRIMARY.light, PRIMARY.main),
   info: createGradient(INFO.light, INFO.main),
   success: createGradient(SUCCESS.light, SUCCESS.main),
   warning: createGradient(WARNING.light, WARNING.main),
@@ -85,19 +135,16 @@ const GRADIENTS = {
 };
 
 export const paletteBase = {
-  primary: { ...PRIMARY },
   secondary: { ...SECONDARY },
   info: { ...INFO },
   success: { ...SUCCESS },
   warning: { ...WARNING },
   error: { ...ERROR },
   grey: GREY,
-  gradients: { ...GRADIENTS },
   divider: GREY[500_24],
 };
 
 export const lightPalette = {
-  ...paletteBase,
   mode: "light" as PaletteMode,
   common: { black: "#000", white: "#fff" },
   text: { primary: GREY[800], secondary: GREY[600], disabled: GREY[500] },
@@ -115,7 +162,6 @@ export const lightPalette = {
 };
 
 export const darkPalette = {
-  ...paletteBase,
   mode: "dark" as PaletteMode,
   common: { black: "#000", white: "#fff" },
   text: { primary: "#fff", secondary: GREY[500], disabled: GREY[600] },
@@ -130,4 +176,36 @@ export const darkPalette = {
     hoverOpacity: 0.08,
     disabledOpacity: 0.48,
   },
+};
+
+const createPrimaryColors = (color: TypeColorMode) => {
+  switch (color) {
+    case "green":
+      return PRIMARY_GREEN;
+    case "lightblue":
+      return PRIMARY_LIGHTBLUE;
+    case "orange":
+      return PRIMARY_ORANGE;
+    case "purple":
+      return PRIMARY_PURPLE;
+    case "darkblue":
+      return PRIMARY_DARKBLUE;
+    case "red":
+      return PRIMARY_RED;
+    default:
+      return PRIMARY_LIGHTBLUE;
+  }
+};
+
+export const createPalette = (color: TypeColorMode, themeMode: PaletteMode) => {
+  const primary = createPrimaryColors(color);
+  return {
+    primary,
+    ...paletteBase,
+    ...(themeMode === "light" ? lightPalette : darkPalette),
+    gradients: {
+      primary: createGradient(primary.light, primary.main),
+      ...GRADIENTS,
+    },
+  };
 };
