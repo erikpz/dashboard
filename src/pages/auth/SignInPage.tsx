@@ -36,7 +36,7 @@ export const SignInPage = () => {
       <Form>
         <Typography variant="h4">Iniciar sesión</Typography>
         <Typography variant="body1" color="text.secondary" sx={{ my: 1 }}>
-          Ingresa tus credenciales
+          Ingresa tus credenciales.
         </Typography>
         <TextField label="Correo electrónico" sx={{ mt: 3 }} />
         <TextField
@@ -75,7 +75,7 @@ export const SignInPage = () => {
               sx={{ color: "primary.main" }}
               underline="none"
             >
-              Regístrate.
+              Regístrate
             </LinkMui>
           </Typography>
         </Hidden>

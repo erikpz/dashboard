@@ -146,6 +146,8 @@ export const SettingsDrawer: FC<SettingsDrawerProps> = (props) => {
                   col.label === color
                     ? `2px solid ${theme.palette.primary.main}`
                     : undefined,
+                boxShadow:
+                  col.label === color ? theme.customShadows.primary : undefined,
               }}
             >
               <FiberManualRecordTwoTone sx={{ color: col.hex }} />

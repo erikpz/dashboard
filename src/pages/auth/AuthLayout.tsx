@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import { Typography, Box, Link as LinkMui } from "@mui/material";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { Hidden } from "../../components/Hidden";
 
 const LayoutStyle = styled(Box)(({ theme }) => ({
@@ -43,42 +43,70 @@ const ImageContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const AuthLayout = () => {
+  const location = useLocation();
+  console.log(location);
+  const getLink = () => {
+    if (location.pathname.includes("sign-in")) {
+      return {
+        text: "¿No tienes una cuenta? ",
+        textLink: "Regístrate",
+        link: "/auth/sign-up",
+      };
+    } else if (location.pathname.includes("sign-up")) {
+      return {
+        text: "¿Ya tienes una cuenta? ",
+        textLink: "Inicia sesión",
+        link: "/auth/sign-in",
+      };
+    } else {
+      return {
+        text: "",
+        textLink: "",
+        link: "/",
+      };
+    }
+  };
   return (
     <LayoutStyle>
-      <HeaderStyle>
-        <img
-          style={{ width: "70px", height: "70px" }}
-          src="/static/illustrations/logo.png"
-          alt="logo"
-        />
-        <Hidden width="smDown">
-          <Typography variant="body2">
-            ¿No tienes una cuenta?{" "}
-            <LinkMui
-              component={Link}
-              to="/auth/sign-up"
-              variant="body2"
-              align="right"
-              sx={{ color: "primary.main" }}
-              underline="none"
-            >
-              Regístrate.
-            </LinkMui>
-          </Typography>
-        </Hidden>
-      </HeaderStyle>
-      <Hidden width="mdDown">
-        <ImageContainer>
-          <Typography variant="h3" sx={{ mt: 10, mb: 8, px: 6 }}>
-            Hola, Bienvenido
-          </Typography>
-          <img
-            alt="bienvenido"
-            src="/static/illustrations/illustration_login.png"
-            style={{ maxWidth: 380, margin: "0 auto" }}
-          />
-        </ImageContainer>
-      </Hidden>
+      {!location.pathname.includes("forgot-password") && (
+        <>
+          <HeaderStyle>
+            <img
+              style={{ width: "70px", height: "70px" }}
+              src="/static/illustrations/logo.png"
+              alt="logo"
+            />
+            <Hidden width="smDown">
+              <Typography variant="body2">
+                {getLink().text}
+                <LinkMui
+                  component={Link}
+                  to={getLink().link}
+                  variant="body2"
+                  align="right"
+                  sx={{ color: "primary.main" }}
+                  underline="none"
+                >
+                  {getLink().textLink}
+                </LinkMui>
+              </Typography>
+            </Hidden>
+          </HeaderStyle>
+          <Hidden width="mdDown">
+            <ImageContainer>
+              <Typography variant="h3" sx={{ mt: 10, mb: 8, px: 6 }}>
+                Hola, Bienvenido
+              </Typography>
+              <img
+                alt="bienvenido"
+                src="/static/illustrations/illustration_login.png"
+                style={{ maxWidth: 380, margin: "0 auto" }}
+              />
+            </ImageContainer>
+          </Hidden>
+        </>
+      )}
+
       <Outlet />
     </LayoutStyle>
   );
