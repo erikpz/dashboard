@@ -61,7 +61,7 @@ export const SignInPage = () => {
         >
           ¿Olvidaste tu contraseña?
         </LinkMui>
-        <Button variant="contained" sx={{ minHeight: 60, my: 2 }}>
+        <Button variant="contained" sx={{ height: 56, my: 2 }}>
           Iniciar Sesión
         </Button>
         <Hidden width="smUp">

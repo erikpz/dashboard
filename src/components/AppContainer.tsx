@@ -21,6 +21,7 @@ const ButtonStyle = styled(Button)(({ theme }) => ({
   zIndex: 1000,
   backgroundColor: theme.palette.background.default,
   color: theme.palette.text.disabled,
+  boxShadow:theme.shadows[18],
   "& svg": {
     transition: "transform 500ms ease",
   },

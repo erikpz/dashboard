@@ -67,7 +67,7 @@ export const SignUpPage = () => {
             />
           </Grid>
         </Grid>
-        <Button variant="contained" sx={{ minHeight: 60, my: 3 }}>
+        <Button variant="contained" sx={{ minHeight: 56, my: 3 }}>
           Registrarse
         </Button>
         <Hidden width="smUp">

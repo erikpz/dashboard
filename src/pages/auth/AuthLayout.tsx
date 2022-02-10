@@ -12,7 +12,7 @@ const LayoutStyle = styled(Box)(({ theme }) => ({
   position: "relative",
 }));
 
-const HeaderStyle = styled(Box)(({ theme }) => ({
+const HeaderStyle = styled("header")(({ theme }) => ({
   /* backgroundColor: "lightblue", */
   width: "calc(100% - 32px)",
   position: "absolute",
@@ -75,43 +75,41 @@ export const AuthLayout = () => {
   };
   return (
     <LayoutStyle>
+      <HeaderStyle>
+        <img
+          style={{ width: "70px", height: "70px" }}
+          src="/static/illustrations/logo.png"
+          alt="logo"
+        />
+        <Hidden width="smDown">
+          <Typography variant="body2">
+            {getDataSection().text}
+            <LinkMui
+              component={Link}
+              to={getDataSection().link}
+              variant="body2"
+              align="right"
+              sx={{ color: "primary.main" }}
+              underline="none"
+            >
+              {getDataSection().textLink}
+            </LinkMui>
+          </Typography>
+        </Hidden>
+      </HeaderStyle>
       {!location.pathname.includes("forgot-password") && (
-        <>
-          <HeaderStyle>
+        <Hidden width="mdDown">
+          <ImageContainer>
+            <Typography variant="h3" sx={{ mt: 10, mb: 8, px: 6 }}>
+              {getDataSection().title}
+            </Typography>
             <img
-              style={{ width: "70px", height: "70px" }}
-              src="/static/illustrations/logo.png"
-              alt="logo"
+              alt="bienvenido"
+              src={getDataSection().imageSrc}
+              style={{ maxWidth: 380, margin: "0 auto" }}
             />
-            <Hidden width="smDown">
-              <Typography variant="body2">
-                {getDataSection().text}
-                <LinkMui
-                  component={Link}
-                  to={getDataSection().link}
-                  variant="body2"
-                  align="right"
-                  sx={{ color: "primary.main" }}
-                  underline="none"
-                >
-                  {getDataSection().textLink}
-                </LinkMui>
-              </Typography>
-            </Hidden>
-          </HeaderStyle>
-          <Hidden width="mdDown">
-            <ImageContainer>
-              <Typography variant="h3" sx={{ mt: 10, mb: 8, px: 6 }}>
-                {getDataSection().title}
-              </Typography>
-              <img
-                alt="bienvenido"
-                src={getDataSection().imageSrc}
-                style={{ maxWidth: 380, margin: "0 auto" }}
-              />
-            </ImageContainer>
-          </Hidden>
-        </>
+          </ImageContainer>
+        </Hidden>
       )}
 
       <Outlet />

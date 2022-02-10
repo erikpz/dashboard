@@ -8,6 +8,7 @@ import { SignInPage } from "./pages/auth/SignInPage";
 import { SignUpPage } from "./pages/auth/SignUpPage";
 import { ThemeConfig } from "./theme/ThemeConfig";
 import { AppContainer } from "./components/AppContainer";
+import { ForgotPasswordPage } from "./pages/auth/ForgotPasswordPage";
 
 const App = () => {
   return (
@@ -27,7 +28,7 @@ const App = () => {
               <Route index element={<Navigate to="sign-in" />} />
               <Route path="sign-in" element={<SignInPage />} />
               <Route path="sign-up" element={<SignUpPage />} />
-              <Route path="forgot-password" element={<p>FORGOT PASS</p>} />
+              <Route path="forgot-password" element={<ForgotPasswordPage />} />
             </Route>
             <Route path="*" element={<p>Not Found</p>} />
           </Routes>
