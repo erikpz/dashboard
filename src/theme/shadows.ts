@@ -4,8 +4,8 @@ import { Shadows } from "@mui/material/styles/shadows";
 export const createShadows = (theme: any): Shadows => {
   const color =
     theme.palette.mode === "light"
-      ? theme.palette.grey[500]
-      : theme.palette.grey[800];
+      ? theme.palette.grey[800]
+      : theme.palette.grey[900];
   const transparent1 = alpha(color, 0.2);
   const transparent2 = alpha(color, 0.14);
   const transparent3 = alpha(color, 0.12);

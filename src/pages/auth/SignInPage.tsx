@@ -9,7 +9,7 @@ import {
   Link as LinkMui,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Hidden } from "../../components/Hidden";
 
 const FormContainer = styled(Box)(({ theme }) => ({
@@ -29,8 +29,13 @@ const Form = styled(Box)(({ theme }) => ({
 }));
 
 export const SignInPage = () => {
+  const navigate = useNavigate();
   const [showPass, setshowPass] = useState(false);
   const handleShowPass = () => setshowPass(!showPass);
+  const handleLogin = () => {
+    localStorage.setItem("token", "token123");
+    navigate("/");
+  };
   return (
     <FormContainer>
       <Form>
@@ -61,7 +66,11 @@ export const SignInPage = () => {
         >
           ¿Olvidaste tu contraseña?
         </LinkMui>
-        <Button variant="contained" sx={{ minHeight: 56, my: 2 }}>
+        <Button
+          variant="contained"
+          sx={{ minHeight: 56, my: 2 }}
+          onClick={handleLogin}
+        >
           Iniciar Sesión
         </Button>
         <Hidden width="smUp">
