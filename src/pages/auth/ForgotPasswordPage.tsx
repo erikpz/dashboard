@@ -18,6 +18,17 @@ const Form = styled(Box)(({ theme }) => ({
   justifyContent: "center",
 }));
 
+const Image = styled("img")(({ theme }) => ({
+  width: 200,
+  margin: "20px auto",
+  [theme.breakpoints.down("md")]: {
+    width: 150,
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: 130,
+  },
+}));
+
 export const ForgotPasswordPage = () => {
   const [send, setsend] = useState(false);
   const navigate = useNavigate();
@@ -37,19 +48,18 @@ export const ForgotPasswordPage = () => {
             <TextField label="Correo electrónico" sx={{ mt: 2 }} />
             <Button
               variant="contained"
-              sx={{ height: 56, mt: 2, mb: 1 }}
+              sx={{ minHeight: 56, mt: 2, mb: 1 }}
               onClick={handleReset}
             >
               Restablecer contraseña
             </Button>
-            <Button sx={{ height: 56 }} onClick={() => navigate("/auth")}>
+            <Button sx={{ minHeight: 56 }} onClick={() => navigate("/auth")}>
               Regresar
             </Button>
           </>
         ) : (
           <>
-            <img
-              style={{ width: 200, margin: "20px auto" }}
+            <Image
               src="/static/illustrations/email_send.png"
               alt="email-send"
             />

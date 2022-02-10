@@ -62,16 +62,16 @@ export const TextField = (theme: any) => {
             },
           },
         },
-        input: {
-          /* padding: "12.5px 10px", */
-          fontSize: theme.typography.body2.fontSize,
-        },
       },
     },
     MuiInputLabel: {
       styleOverrides: {
         root: {
           color: theme.palette.text.disabled,
+          fontSize: theme.typography.body1.fontSize,
+          "@media (max-width: 600px)": {
+            fontSize: theme.typography.body2.fontSize,
+          },
         },
       },
     },
