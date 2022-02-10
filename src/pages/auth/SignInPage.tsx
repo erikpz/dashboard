@@ -38,11 +38,11 @@ export const SignInPage = () => {
         <Typography variant="body1" color="text.secondary" sx={{ my: 1 }}>
           Ingresa tus credenciales.
         </Typography>
-        <TextField label="Correo electrónico" sx={{ mt: 3 }} />
+        <TextField label="Correo electrónico" sx={{ mt: 2 }} />
         <TextField
           label="Contraseña"
           type={showPass ? "text" : "password"}
-          sx={{ mt: 3 }}
+          sx={{ mt: 2 }}
           InputProps={{
             endAdornment: (
               <IconButton onClick={handleShowPass}>
@@ -61,7 +61,7 @@ export const SignInPage = () => {
         >
           ¿Olvidaste tu contraseña?
         </LinkMui>
-        <Button variant="contained" sx={{ height: 60, my: 3 }}>
+        <Button variant="contained" sx={{ minHeight: 60, my: 3 }}>
           Iniciar Sesión
         </Button>
         <Hidden width="smUp">

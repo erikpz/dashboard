@@ -39,7 +39,7 @@ export const SignUpPage = () => {
         <Typography variant="body1" color="text.secondary" sx={{ my: 1 }}>
           Ingresa tus datos.
         </Typography>
-        <Grid container spacing={1}>
+        <Grid container spacing={2} mt={0}>
           <Grid item xs={12} sm={6}>
             <TextField fullWidth label="Nombre(s)" />
           </Grid>
@@ -67,7 +67,7 @@ export const SignUpPage = () => {
             />
           </Grid>
         </Grid>
-        <Button variant="contained" sx={{ height: 60, my: 3 }}>
+        <Button variant="contained" sx={{ minHeight: 60, my: 3 }}>
           Registrarse
         </Button>
         <Hidden width="smUp">
