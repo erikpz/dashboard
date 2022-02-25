@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ScrollToTop } from "./components/ScrollToTop";
-import { PrivateRoute } from "./pages/components/PrivateRoute";
+import { PrivateRoute } from "./components/PrivateRoute";
 import { DashboardLayout } from "./pages/dashboard/DashboardLayout";
 import { AuthLayout } from "./pages/auth/AuthLayout";
 import { SignInPage } from "./pages/auth/SignInPage";
