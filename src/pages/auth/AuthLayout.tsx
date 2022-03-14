@@ -45,7 +45,6 @@ const ImageContainer = styled(Box)(({ theme }) => ({
 
 export const AuthLayout = () => {
   const location = useLocation();
-  console.log(location);
   const getDataSection = () => {
     if (location.pathname.includes("sign-in")) {
       return {
